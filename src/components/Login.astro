@@ -1,0 +1,168 @@
+<div class="login">
+  <div>
+    <h1>Solo tú puedes entrar aquí 🤎️</h1>
+    <form id="formulario" action="" class="form-Login">
+      <label for="" class="form-Login-contents">
+        ¿Como te llamas?
+        <input type="text" class="login-input" />
+      </label>
+      <label for="" class="form-Login-contents">
+        Contraseña
+        <input type="password" class="login-input" />
+        <div class="pista">
+            <span>Pista: asi me llamas de cariño</span>
+        </div>
+      </label>
+      <button class="login-button">Entrar</button>
+    </form>
+    <img src="/src/img/1.jpg " alt="" class="login-img-uno" />
+    <img src="/src/img/2.jpg " alt="" class="login-img-dos" />
+    <img src="/src/img/12.jpg " alt="" class="login-img-doce" />
+    <img src="/src/img/13.jpeg " alt="" class="login-img-trece" />
+  </div>
+</div>
+
+<script is:inline>
+  document
+    .getElementById("formulario")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const inputName = e.target[0];
+      const inputPasword = e.target[1];
+
+      let error = false;
+
+      const shakeInput = (input) => {
+        input.classList.remove("input-error");
+        void input.offsetWidth;
+        input.classList.add("input-error");
+      };
+
+      if (e.target[0].value !== "juana") {
+        shakeInput(inputName);
+        error = true;
+      } else {
+        inputName.classList.remove("input-error");
+      }
+
+      if (e.target[1].value !== "cheilo") {
+        shakeInput(inputPasword);
+        error = true;
+      } else {
+        inputPasword.classList.remove("input-error");
+      }
+
+      if (!error) {
+        window.location.href = "/bienvenida";
+      }
+    });
+</script>
+
+<style>
+  img {
+    width: 22%;
+  }
+  h1 {
+    font-family: var(--titulo-font-family);
+    color: var(--titulo);
+    font-size: 50px;
+  }
+  .form-Login-contents {
+    font-family: var(--titulo-font-family);
+    color: var(--titulo);
+    font-size: 30px;
+  }
+  .login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form-Login {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5%;
+    gap: 20px;
+    border-radius: 20px;
+  }
+  .form-Login label {
+    display: flex;
+    flex-direction: column;
+  }
+  .pista {
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    color: var(--text-color);
+  }
+  .login-input {
+    all: unset;
+    background-color: var(--primary-color);
+    border-color: var(--titulo);
+    border-radius: 10px;
+    margin: 0% 2%;
+    font-size: 20px;
+    padding: 1% 2%;
+    cursor: text;
+  }
+  .login-button {
+    margin-top: 5%;
+    background-color: var(--titulo);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: var(--text-font-family);
+    cursor: pointer;
+  }
+  .login-img-uno {
+    position: fixed;
+    bottom: -10%;
+    right: 3%;
+    border-radius: 15px;
+    transform: rotate(30deg);
+  }
+  .login-img-dos {
+    position: fixed;
+    top: -7%;
+    left: 2%;
+    border-radius: 15px;
+    transform: rotate(20deg);
+  }
+  .login-img-doce {
+    position: fixed;
+    top: -7%;
+    right: 2%;
+    border-radius: 15px;
+    transform: rotate(-20deg);
+  }
+  .login-img-trece {
+    position: fixed;
+    bottom: -7%;
+    left: 2%;
+    border-radius: 15px;
+    transform: rotate(-20deg);
+  }
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+  }
+  .input-error {
+    animation: shake 0.3s ease-in-out;
+    border: 2px solid red;
+  }
+</style>

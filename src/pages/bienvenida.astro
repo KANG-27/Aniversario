@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+	<div class="all-content">
+		<div class="content first-line">
+			<span>Hace 3 años nuestros caminos se cruzaron...</span>
+			<span>sin saber que estábamos por comenzar la</span>
+			<span>mejor aventura de todas</span>
+		</div>
+		<div class="content">
+			<span>Desde nuestra primera risa hasta nuestras</span>
+			<span>conversaciones hasta el amanecer, cada</span>
+			<span>instante ha sido un regalo.</span>
+		</div>
+
+		<section class="hscroll" style="--panels:13">
+			<div class="pin">
+				<div class="row">
+					<figure class="panel">
+						<img src="src/img/24.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/23.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/22.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/21.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/20.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/19.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/18.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/17.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/16.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/15.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/14.jpg" alt="" />
+					</figure>
+					<figure class="panel">
+						<img src="src/img/13.jpg" alt="" />
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<div class="content">
+			<span>Hemos aprendido, crecido y construido</span>
+			<span>recuerdos que hoy llenan mi corazón de</span>
+			<span>felicidad.</span>
+		</div>
+		<div class="content">
+			<span>Hoy celebramos no solo un aniversario más,</span>
+			<span>sino un amor que sigue fortaleciéndose día</span>
+			<span>a día.</span>
+		</div>
+	</div>
+</Layout>
+
+
+
+<style>
+	span {
+		display: block;
+		font-size: 40px;
+		margin-bottom: 0.5rem;
+		color: #E56B6F;
+		font-family: "Baloo 2", cursive;
+	}
+
+	.all-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		text-align: center;
+		padding: 0 1rem;
+	}
+	.content {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		view-timeline-name: --reveal;
+		animation-name: show;
+		animation-fill-mode: both;
+		animation-timeline: --reveal;
+		animation-range: entry 25% cover 50%;
+	}
+
+	@keyframes show {
+		from {
+			opacity: 0;
+			scale: 10%;
+		}
+		to {
+			opacity: 1;
+			scale: 100%;
+		}
+	}
+
+	/* Altura total = nº de pantallas que “deslizamos” */
+	.hscroll {
+		--panels: 8; /* o ponlo en el style inline */
+		height: calc(var(--panels) * 100vh);
+		view-timeline-name: --hs; /* timeline ligada al scroll vertical */
+		view-timeline-axis: block;
+		width: 100%;
+	}
+
+	.pin {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow: hidden;
+	}
+
+	.row {
+		display: flex;
+		height: 100%;
+		width: calc(var(--panels) * 100vw);
+		will-change: transform;
+		animation: slide-x linear both;
+		animation-timeline: --hs; /* mueve en X según el scroll */
+		animation-range: contain 0% 100%;
+	}
+
+	.panel {
+		flex: 0 0 100vw; /* cada panel ocupa una “pantalla” */
+		height: 100vh;
+		display: grid;
+		place-items: center;
+	}
+
+	/* Aparición lateral de cada imagen */
+	.panel img {
+		max-width: 90vw;
+		max-height: 90vh;
+		object-fit: cover;
+		animation: reveal 1s ease-out both;
+		/* pequeño “stagger” por panel */
+	}
+	.panel:nth-child(1) img {
+		animation-delay: 0.05s;
+	}
+	.panel:nth-child(2) img {
+		animation-delay: 0.15s;
+	}
+	.panel:nth-child(3) img {
+		animation-delay: 0.25s;
+	}
+	.panel:nth-child(4) img {
+		animation-delay: 0.35s;
+	}
+
+	@keyframes slide-x {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-100vw * (var(--panels) - 1)));
+		}
+	}
+
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateX(12%) scale(0.98);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0) scale(1);
+		}
+	}
+</style>
