@@ -1,4 +1,5 @@
 ---
+import AudioPlayer from "../components/AudioPlayer.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -69,16 +70,15 @@ import Layout from "../layouts/Layout.astro";
 			<span>a día.</span>
 		</div>
 	</div>
+	<AudioPlayer src="src/cancion/Ojos Color Sol.mp3" title="Nuestra canción 💘" />
 </Layout>
-
-
 
 <style>
 	span {
 		display: block;
 		font-size: 40px;
 		margin-bottom: 0.5rem;
-		color: #E56B6F;
+		color: #e56b6f;
 		font-family: "Baloo 2", cursive;
 	}
 
